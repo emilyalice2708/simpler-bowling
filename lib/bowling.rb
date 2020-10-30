@@ -7,8 +7,8 @@ class Bowling
 
   def bowl(pins)
     @rolls << pins
-    if @rolls.length.odd? && pins == 10 && @rolls.length < 18
-      @rolls << nil
+    if @rolls.length.odd? && pins == 10 && !final_frame?
+    end_frame
     end
   end
 
@@ -37,13 +37,21 @@ class Bowling
   end
 
   def strike_bonus
-    if @rolls.length >= 18
+    if final_frame?
       return unless @rolls[@roll_number + 1] && @rolls[@roll_number + 2]
       @score = 10 + @rolls[@roll_number + 1] + @rolls[@roll_number + 2]
     else
       return unless @rolls[@roll_number + 2] && @rolls[@roll_number + 3]
       @score = 10 + @rolls[@roll_number + 2] + @rolls[@roll_number + 3]
     end
+  end
+
+  def end_frame
+    @rolls << nil
+  end
+  
+  def final_frame?
+    @rolls.length >= 18
   end
 
   def spare_bonus

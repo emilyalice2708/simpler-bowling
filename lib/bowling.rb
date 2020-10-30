@@ -36,12 +36,20 @@ class Bowling
 
   def score_strike
     if final_frame?
-      return unless @rolls[@roll_number + 1] && @rolls[@roll_number + 2]
-      @score = 10 + @rolls[@roll_number + 1] + @rolls[@roll_number + 2]
+      score_final_strike
     else
-      return unless @rolls[@roll_number + 2] && @rolls[@roll_number + 3]
-      @score = 10 + @rolls[@roll_number + 2] + @rolls[@roll_number + 3]
+      score_regular_strike
     end
+  end
+
+  def score_final_strike
+    return unless @rolls[@roll_number + 1] && @rolls[@roll_number + 2]
+    @score = 10 + @rolls[@roll_number + 1] + @rolls[@roll_number + 2]
+  end
+
+  def score_regular_strike
+    return unless @rolls[@roll_number + 2] && @rolls[@roll_number + 3]
+    @score = 10 + @rolls[@roll_number + 2] + @rolls[@roll_number + 3]
   end
 
   def end_frame

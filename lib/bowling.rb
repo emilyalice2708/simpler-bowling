@@ -14,7 +14,7 @@ class Bowling
     rolls_length = @rolls.size 
     while @roll_number < rolls_length do
       if spare?
-        @score += 10 + @rolls[@roll_number + 2]
+        spare_bonus
       else
         @score += @rolls[@roll_number] + @rolls[@roll_number + 1]
       end
@@ -25,6 +25,10 @@ class Bowling
 
   def spare?
     @rolls[@roll_number] + @rolls[@roll_number] == 10
+  end
+
+  def spare_bonus
+    @score += 10 + @rolls[@roll_number + 2]
   end
 
 end

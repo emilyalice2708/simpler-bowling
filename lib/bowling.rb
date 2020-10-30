@@ -7,16 +7,21 @@ class Bowling
 
   def bowl(pins)
     @rolls << pins
+    if @rolls.length.odd? && pins == 10
+      @rolls << nil
+    end
   end
 
   def score
     @roll_number = 0
     rolls_length = @rolls.size 
     while @roll_number < rolls_length do
-      if spare?
+      if @rolls[@roll_number] == 10
+        @score = 10 + @rolls[@roll_number + 2] + @rolls[@roll_number + 3]
+      elsif spare?
         spare_bonus
       else
-        @score += @rolls[@roll_number] + @rolls[@roll_number + 1]
+        regular_frame
       end
       @roll_number += 2
     end
@@ -29,6 +34,10 @@ class Bowling
 
   def spare_bonus
     @score += 10 + @rolls[@roll_number + 2]
+  end
+
+  def regular_frame
+    @score += @rolls[@roll_number] + @rolls[@roll_number + 1]
   end
 
 end

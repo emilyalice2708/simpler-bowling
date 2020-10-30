@@ -48,4 +48,9 @@ describe Bowling do
     expect(game.score).to eq 30
   end
 
+  it 'can score a perfect game' do
+    12.times { game.bowl(10) }
+    expect(game.score).to eq 300
+  end
+
 end

@@ -45,6 +45,7 @@ class Bowling
   end
 
   def regular_frame
+    return unless @rolls[@roll_number + 1]
     @score += @rolls[@roll_number] + @rolls[@roll_number + 1]
   end
 

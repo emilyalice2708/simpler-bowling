@@ -1,9 +1,15 @@
 class Bowling
+
+  def initialize
+    @score = 0
+  end
+
   def bowl(pins)
-    
+    @score += pins
   end
 
   def score
-    0
+    @score
   end
+  
 end

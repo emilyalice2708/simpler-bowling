@@ -10,6 +10,11 @@ class Bowling
   end
 
   def score
+    calculate_score
+    @score
+  end
+
+  def calculate_score
     game_length.times do
       if strike?
         score_strike
@@ -20,7 +25,6 @@ class Bowling
       end
       @roll_number += 2
     end
-    @score
   end
 
   def strike?

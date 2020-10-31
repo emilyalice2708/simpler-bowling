@@ -14,6 +14,8 @@ class Bowling
     @score
   end
 
+  private
+
   def calculate_score
     game_length.times do
       if strike?

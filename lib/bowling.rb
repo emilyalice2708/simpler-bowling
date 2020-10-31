@@ -1,19 +1,23 @@
 class Bowling
-
   def initialize
     @score = 0
     @rolls = []
+    @game_length = 0
   end
 
   def bowl(pins)
     @rolls << pins
-    end_frame if  @rolls.length.odd? && pins == 10 && !final_frame?
+    if @rolls.length.odd? && pins == 10 && !final_frame?
+      end_frame
+      @game_length += 1
+    else 
+      @game_length += 0.5
+    end
   end
 
   def score
     @roll_number = 0
-    rolls_length = @rolls.size 
-    while @roll_number < rolls_length do
+    frame_count.times do
       if strike?
         score_strike
       elsif spare?
@@ -31,15 +35,21 @@ class Bowling
   end
 
   def spare?
-    @rolls[@roll_number] + @rolls[@roll_number] == 10
+    return unless @rolls[@roll_number + 1]
+    @rolls[@roll_number] + @rolls[@roll_number + 1] == 10
+  end
+
+  def score_regular
+    return unless @rolls[@roll_number + 1]
+    @score += @rolls[@roll_number] + @rolls[@roll_number + 1]
+  end
+
+  def score_spare
+    @score += 10 + @rolls[@roll_number + 2]
   end
 
   def score_strike
-    if @roll_number >= 18
-      score_final_strike
-    else
-      score_regular_strike
-    end
+    @roll_number == 18 ? score_final_strike : score_regular_strike
   end
 
   def score_final_strike
@@ -64,14 +74,7 @@ class Bowling
     @rolls.length >= 18
   end
 
-  def score_spare
-    @score += 10 + @rolls[@roll_number + 2]
+  def frame_count
+    @game_length.ceil
   end
-
-  def score_regular
-    return unless @rolls[@roll_number + 1]
-    @score += @rolls[@roll_number] + @rolls[@roll_number + 1]
-  end
-
 end
-

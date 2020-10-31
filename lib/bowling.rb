@@ -46,7 +46,6 @@ class Bowling
   end
 
   def score_final_strike
-    return unless @rolls[@roll_number + 1] && @rolls[@roll_number + 2]
     @score += 10 + @rolls[@roll_number + 1] + @rolls[@roll_number + 2]
   end
 

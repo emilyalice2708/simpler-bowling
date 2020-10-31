@@ -1,6 +1,6 @@
-class Bowling
+class BowlingGame
   def initialize
-    @score, @game_length, @roll_number = 0, 0, 0
+    @score, @frame_count, @roll_number = 0, 0, 0
     @rolls = []
   end
 
@@ -66,20 +66,20 @@ class Bowling
   end
   
   def final_frame?
-    @rolls.length >= 18
+    @rolls.length == 19
   end
 
   def game_length
-    @game_length.ceil
+    @frame_count.ceil
   end
 
   def close_frame
     @rolls << 0
-    @game_length += 1
+    @frame_count += 1
   end
 
   def increment_frame
-    @game_length += 0.5
+    @frame_count += 0.5
   end
   
   def game_tracker(pins)

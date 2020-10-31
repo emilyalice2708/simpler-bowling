@@ -1,6 +1,27 @@
 Bowling Challenge in Ruby
 =================
 
+## Set Up
+```
+$ git clone
+$ bundle install
+```
+
+## How To Use
+
+Run the project using irb:
+```
+$ irb
+$ require './lib/bowling.rb'
+$ game = BowlingGame.new
+$ game.roll(3)
+$ game.roll(6)
+$ game.score
+ => 9
+```
+
+Run apps with rspec.
+
 ## Goal:
 - Create a Bowling class capable of counting and summing the scores of a single player's bowling game.
 - Focus on high quality code, with a focus on:
